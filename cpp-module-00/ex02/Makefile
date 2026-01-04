@@ -1,12 +1,12 @@
-NAME = megaphone
+NAME = tests
 
-SRC = PhoneBook.cpp Contact.cpp main.cpp
+SRC = tests.cpp Account.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
 CPP = c++ -Wall -Wextra -Werror -g -std=c++98
 
-%.o : %.cpp PhoneBook.hpp Contact.hpp
+%.o : %.cpp Account.hpp
 	$(CPP) -c $< -o $@
 
 all : $(NAME)
