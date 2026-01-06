@@ -1,12 +1,12 @@
-NAME = Weapon
+NAME = Harl
 
-SRC = HumanA.cpp  HumanB.cpp  main.cpp  Weapon.cpp
+SRC = Harl.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
 CPP = c++ -Wall -Wextra -Werror -std=c++98
 
-%.o : %.cpp HumanA.hpp  HumanB.hpp  Weapon.hpp
+%.o : %.cpp Harl.hpp
 	$(CPP) -c $< -o $@
 
 all : $(NAME)

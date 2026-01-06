@@ -1,10 +1,10 @@
-NAME = Zombie
+NAME = replace
 
-SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-CPP = c++ -Wall -Wextra -Werror -std=c++98
+CPP = c++ -g -Wall -Wextra -Werror -std=c++98
 
 %.o : %.cpp Zombie.hpp
 	$(CPP) -c $< -o $@
