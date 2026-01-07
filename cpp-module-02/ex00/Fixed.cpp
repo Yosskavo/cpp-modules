@@ -7,13 +7,12 @@ Fixed::Fixed(void)
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(Fixed & val)
+Fixed::Fixed(const Fixed &val) : fixed_point(val.fixed_point)
 {
-	fixed_point = val.getRawBits();
 	std::cout << "Copy constructor called" << std::endl;
 }
 
-int Fixed::getRawBits(void)
+int Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
 	return (fixed_point);

@@ -1,6 +1,8 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
+#include <ostream>
+
 class Fixed
 {
 	private :
@@ -8,11 +10,17 @@ class Fixed
 		static const int bits = 8;
 	public :
 		Fixed();
-		Fixed(Fixed & val);
-		Fixed &operator=(const Fixed &cp);
+		Fixed(const float val);
+		Fixed(const int val);
+		Fixed(const Fixed & val);
 		~Fixed();
-		int getRawBits(void);
+		Fixed &operator=(const Fixed &cp);
+		int getRawBits(void) const;
 		void setRawBits(const int val);
+		float toFloat(void) const;
+		int toInt(void) const;
 };
+
+std::ostream & operator<<(std::ostream & os, const Fixed &fixed);
 
 #endif

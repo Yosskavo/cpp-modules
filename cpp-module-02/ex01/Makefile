@@ -1,4 +1,4 @@
-NAME = Fixed
+NAME = fixed_point
 
 SRC = Fixed.cpp main.cpp
 
