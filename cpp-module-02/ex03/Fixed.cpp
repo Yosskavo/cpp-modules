@@ -162,7 +162,6 @@ Fixed Fixed::operator--(int)
 	return (tmp);
 }
 
-
 Fixed Fixed::operator+(const Fixed &fixed) const
 {
 	Fixed tmp;
@@ -170,7 +169,6 @@ Fixed Fixed::operator+(const Fixed &fixed) const
 	tmp.fixed_point = this->fixed_point + fixed.fixed_point; 
 	return (tmp);
 }
-
 
 Fixed Fixed::operator-(const Fixed &fixed) const
 {

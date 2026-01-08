@@ -39,7 +39,7 @@ void Fixed::setRawBits(int val)
 
 Fixed & Fixed::operator=(const Fixed &cp)
 {
-	std::cout << "Copy assignment operator calle" << std::endl;
+	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &cp)
 		this->fixed_point = cp.fixed_point;
 	return (*this);
