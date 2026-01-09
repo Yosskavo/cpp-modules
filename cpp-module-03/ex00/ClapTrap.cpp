@@ -6,7 +6,7 @@ ClapTrap::ClapTrap(void) : name(""), hit_points(10), energy_points(10), attack_d
 	std::cout << "ClapTrap " +this->name+ " constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string name) : name(name), hit_points(10), energy_points(10), attack_damage(0)
+ClapTrap::ClapTrap(const std::string & p_name) : name(p_name), hit_points(10), energy_points(10), attack_damage(0)
 {
 	std::cout << "ClapTrap " +this->name+ " constructor called" << std::endl;
 }

@@ -4,7 +4,7 @@ SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-CPP = c++ -Wall -Wextra -Werror -std=c++98
+CPP = c++ -Wall -Wextra -Werror -std=c++98 -Wshadow
 
 %.o : %.cpp ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 	$(CPP) -c $< -o $@
