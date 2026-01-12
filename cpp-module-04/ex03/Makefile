@@ -1,15 +1,18 @@
-NAME = ClapTrap
+NAME = megaphone
 
-SRC = main.cpp ClapTrap.cpp
+SRC = megaphone.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-CXX = c++ -Wall -Wextra -Werror -std=c++98
+CPP = c++ -Wall -Wextra -Werror -std=c++98
+
+%.o : %.cpp
+	$(CPP) -c $< -o $@
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CXX) $(OBJ) -o $(NAME)
+	$(CPP) $(OBJ) -o $(NAME)
 
 clean : 
 	rm -rf $(OBJ)
