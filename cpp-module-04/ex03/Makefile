@@ -1,6 +1,6 @@
-NAME = megaphone
+NAME = character
 
-SRC = megaphone.cpp
+SRC = AMateria.cpp  Character.cpp  Cure.cpp  Ice.cpp  main.cpp  MateriaSource.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

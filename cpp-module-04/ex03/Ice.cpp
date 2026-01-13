@@ -1,4 +1,6 @@
 #include "Ice.hpp"
+#include <iostream>
+#include "ICharacter.hpp"
 
 Ice::Ice(void) : AMateria("ice")
 {
@@ -26,4 +28,6 @@ AMateria *Ice::clone(void) const
 }
 
 void Ice::use(ICharacter &target)
-{}
+{
+	std::cout << "* shoots an ice bolt at " << target.getName() << std::endl;
+}
