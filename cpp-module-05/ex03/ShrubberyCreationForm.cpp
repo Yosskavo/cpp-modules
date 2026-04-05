@@ -5,6 +5,14 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm(
 {
 }
 
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("Shrubbery", false, 145, 137), _target("Uknown Target")
+{
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm & s) : AForm(s), _target(s._target)
+{
+}
+
 void ShrubberyCreationForm::execute(const Bureaucrat & b) const
 {
 	if (b.getGrade() > this->getGradeSign())

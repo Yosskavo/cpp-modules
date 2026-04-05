@@ -5,6 +5,14 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string & target) : AFo
 {
 }
 
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm & p) : AForm(p) , _target(p._target)
+{
+}
+
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("president", false, 25, 5), _target("Unknown President")
+{
+}
+
 PresidentialPardonForm::~PresidentialPardonForm(void)
 {
 }

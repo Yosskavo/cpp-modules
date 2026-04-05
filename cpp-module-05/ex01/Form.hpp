@@ -14,6 +14,7 @@ class Form
 		const short		_grade_execute;
 	public :
 		Form(void);
+		Form(const Form &f);
 		Form(const std::string &name, const bool is_signed, const short grade_sign, const short grade_execute);
 		~Form(void);
 		Form & operator=(const Form & f);

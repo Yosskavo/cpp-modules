@@ -1,7 +1,6 @@
 #include "PresidentialPardonForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
-#include "Intern.hpp"
 #include <iostream>
 
 int main()
@@ -10,8 +9,6 @@ int main()
 	RobotomyRequestForm r("zar");
 	ShrubberyCreationForm s("shadom");
 	Bureaucrat b("3afak", 57);
-	AForm * d;
-	Intern i;
 
 	try
 	{
@@ -40,9 +37,4 @@ int main()
 	b.executeForm(s);
 	b.executeForm(r);
 	b.executeForm(p);
-
-	d = i.makeForm("robotomy request", "fraind");
-	d->execute(b);
-
-	delete d;
 }

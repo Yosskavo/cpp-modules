@@ -6,6 +6,15 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string & target) : AForm("Ro
 {
 }
 
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm("Robot", false, 72, 45), _target("Uknown target")
+{
+}
+
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm & r) : AForm(r), _target(r._target)
+{
+}
+
+
 RobotomyRequestForm::~RobotomyRequestForm(void)
 {
 }

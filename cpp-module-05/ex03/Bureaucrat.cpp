@@ -6,6 +6,10 @@ Bureaucrat::Bureaucrat(void) : _name("Uknown"), _grade(150)
 {
 }
 
+Bureaucrat::Bureaucrat(const Bureaucrat &b) : _name(b._name), _grade(b._grade)
+{
+}
+
 Bureaucrat::~Bureaucrat()
 {
 }

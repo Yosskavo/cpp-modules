@@ -4,6 +4,22 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 
+Intern::Intern(void)
+{
+}
+
+Intern::Intern(const Intern & i)
+{
+}
+
+Intern & Intern::operator=(const Intern & i)
+{
+	if (this == &i)
+	{
+	}
+	return (*this);
+}
+
 AForm * Intern::makeForm(const std::string & name_of_form, const std::string & target_name)
 {
 	int	i;

@@ -13,6 +13,7 @@ class Bureaucrat
 		short 				_grade;
 	public :
 		Bureaucrat(void);
+		Bureaucrat(const Bureaucrat & b);
 		~Bureaucrat(void);
 		Bureaucrat &operator= (const Bureaucrat & b);
 		Bureaucrat(const std::string &name, const short grade);

@@ -1,11 +1,7 @@
-NAME = AForm
-
+NAME = Iter
 CXX = c++
-
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-
-SRC = AForm.cpp Bureaucrat.cpp main.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp 
-
+SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

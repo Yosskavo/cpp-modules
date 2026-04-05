@@ -14,6 +14,7 @@ class Bureaucrat
 	public :
 		Bureaucrat(void);
 		~Bureaucrat(void);
+		Bureaucrat(const Bureaucrat &b);
 		Bureaucrat &operator= (const Bureaucrat & b);
 		Bureaucrat(const std::string &name, const short grade);
 		std::string		getName(void)	const;

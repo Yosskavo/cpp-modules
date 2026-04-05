@@ -14,6 +14,7 @@ class AForm
 		const short		_grade_execute;
 	public :
 		AForm(void);
+		AForm(const AForm &f);
 		AForm(const std::string &name, const bool is_signed, const short grade_sign, const short grade_execute);
 		virtual ~AForm(void);
 		AForm & operator=(const AForm & f);

@@ -9,6 +9,10 @@ Bureaucrat::~Bureaucrat()
 {
 }
 
+Bureaucrat::Bureaucrat(const Bureaucrat & b) : _name(b._name), _grade(b._grade)
+{
+}
+
 Bureaucrat & Bureaucrat::operator=(const Bureaucrat & b)
 {
 	if (this == &b)

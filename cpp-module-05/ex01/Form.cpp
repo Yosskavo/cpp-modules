@@ -5,6 +5,10 @@ Form::Form(void) : _name("Unknown"), _is_signed(false), _grade_sign(150), _grade
 {
 }
 
+Form::Form(const Form &f) : _name(f._name), _is_signed(f._is_signed), _grade_sign(f._grade_sign), _grade_execute(f._grade_execute)
+{
+}
+
 Form::Form(const std::string &name, const bool is_signed, const short grade_sign, const short grade_execute) : _name(name), _is_signed(is_signed), _grade_sign(grade_sign), _grade_execute(grade_execute)
 {
 	if (this->_grade_execute < 1 || this->_grade_sign < 1)
