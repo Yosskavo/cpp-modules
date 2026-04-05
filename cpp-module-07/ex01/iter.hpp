@@ -4,11 +4,11 @@
 #include <cstdio>
 
 template <typename T, typename Y>
-	void iter(T *arr, size_t size, Y *(func)())
+	void iter(T *arr, const size_t & size, Y func)
 	{
 		for (size_t	i = 0; i < size; i++)
 		{
-			func(*arr[i]);
+			func(arr[i]);
 		}
 	}
 

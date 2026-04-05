@@ -7,8 +7,6 @@
 #include <climits>
 #include <cmath>
 
-// NOTE: converter to the data-types given
-
 void char_value(char value)
 {
 	if (value < 31 || value > 126)
@@ -115,8 +113,6 @@ void int_value(long value)
 	}
 	std::cout << "double : " << value << std::endl;
 }
-
-// NOTE: handler of the data-type given
 
 void float_handle(const char *s)
 {
