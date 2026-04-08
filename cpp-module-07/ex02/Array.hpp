@@ -58,10 +58,11 @@ template <typename T>
 			}
 			class OutOfRange : public std::exception
 			{
-				const char *what() const throw()
-				{
-					return ("The index is out of range of the array");
-				}
+				public :
+					const char *what() const throw()
+					{
+						return ("The index is out of range of the array");
+					}
 			};
 
 	};
