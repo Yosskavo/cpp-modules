@@ -1,4 +1,4 @@
-// #include "BitcoinExchange.hpp"
+#include "BitcoinExchange.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -16,6 +16,6 @@ int main(int ac, char **av)
 		std::cerr << "Faild to open the file" << std::endl;
 		return (2);
 	}
-	
+
 	return (0);
 }
