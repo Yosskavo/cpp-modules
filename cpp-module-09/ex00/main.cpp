@@ -1,6 +1,5 @@
 #include "BitcoinExchange.hpp"
 #include <iostream>
-#include <fstream>
 
 int main(int ac, char **av)
 {
@@ -9,13 +8,14 @@ int main(int ac, char **av)
 		std::cerr << "Missing argument" << std::endl;
 		return (1);
 	}
-	std::ifstream file(av[1]);
+	try {
+		BitcoinExchange a;
 
-	if (file.fail())
-	{
-		std::cerr << "Faild to open the file" << std::endl;
-		return (2);
+		a.calculate_value(av[1]);
 	}
-
+	catch (const std::exception & e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	return (0);
 }

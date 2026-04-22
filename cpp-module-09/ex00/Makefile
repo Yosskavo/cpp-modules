@@ -8,28 +8,27 @@ C_RESET  = \033[0m
 NAME = btc
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp BitcoinExchange.cpp
+SRC = BitcoinExchange.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "$(C_BLUE)🔗 Linking $(NAME)...$(C_RESET)"
+	@echo "$(C_BLUE) 󰌷 Linking $(NAME)...$(C_RESET)"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "$(C_GREEN)✅ Done compiling!$(C_RESET)"
+	@echo "$(C_GREEN) 󰙴 Done compiling!$(C_RESET)"
 
 %.o: %.cpp
-	@echo "$(C_YELLOW)⏳ Compiling $<...$(C_RESET)"
+	@echo "$(C_YELLOW) 󰔚 Compiling $<...$(C_RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "$(C_RED)🧹 Removing object files...$(C_RESET)"
+	@echo "$(C_RED) 󰮘 Removing object files...$(C_RESET)"
 	@rm -fv $(OBJ)
 
 fclean: clean
-	@echo "$(C_RED)🗑️ Removing executable $(NAME)...$(C_RESET)"
+	@echo "$(C_RED)  Removing executable $(NAME)...$(C_RESET)"
 	@rm -fv $(NAME)
 
 re: fclean all
-
 .PHONY: all clean fclean re
