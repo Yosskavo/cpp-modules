@@ -3,6 +3,7 @@
 #include <climits>
 #include <stdexcept>
 #include <iostream>
+#include <algorithm>
 
 PmergeMe::PmergeMe(void)
 {
@@ -57,57 +58,62 @@ void	PmergeMe::SortVector(void)
 			tmpv.push_back(std::make_pair(tmpi, *it));
 		}
 		else {
-			tmpv.push_back(std::make_pair(tmpi, -1));
 			it--;
 		}
 	}
 	for (std::vector< std::pair<int, int> >::iterator it = tmpv.begin(); it != tmpv.end(); it++)
 	{
-		std::cout << "The first = " << it->first << " ; The scond : " << it->second << std::endl;
-		if (it->first > it->second)
+		if (it->first < it->second)
 		{
 			tmp = it->first;
 			it->first = it->second;
 			it->second = tmp;
 		}
-		std::cout << "The first = " << it->first << " ; The scond : " << it->second << std::endl;
 	}
-
+	this->_vector.clear();
+	std::sort(tmpv.begin(), tmpv.end());
+	for (std::vector< std::pair<int, int> >::iterator it = tmpv.begin(); it != tmpv.end(); it++)
+	{
+		this->_vector.push_back(it->first);
+	}
+	 
+	tmpv.pop_back();
 }
 
 
-void	PmergeMe::SortDeque(void)
-{
-	std::deque<std::pair<int, int> >		tmpv;
-	int										tmpi;
-	int										tmp;
-
-	for (std::deque<int>::iterator it = this->_deque.begin(); it != this->_deque.end(); it++)
-	{
-		tmpi = *it;
-		it++;
-		if (it != this->_deque.end())
-		{
-			tmpv.push_back(std::make_pair(tmpi, *it));
-		}
-		else {
-			tmpv.push_back(std::make_pair(tmpi, -1));
-			it--;
-		}
-	}
-	for (std::deque< std::pair<int, int> >::iterator it = tmpv.begin(); it != tmpv.end(); it++)
-	{
-		std::cout << "The first = " << it->first << " ; The scond : " << it->second << std::endl;
-		if (it->first > it->second)
-		{
-			tmp = it->first;
-			it->first = it->second;
-			it->second = tmp;
-		}
-		std::cout << "The first = " << it->first << " ; The scond : " << it->second << std::endl;
-	}
-
-}
+// void	PmergeMe::SortDeque(void)
+// {
+// 	std::deque<std::pair<int, int> >		tmpv;
+// 	int										tmpi;
+// 	int										tmp;
+//
+// 	for (std::deque<int>::iterator it = this->_deque.begin(); it != this->_deque.end(); it++)
+// 	{
+// 		tmpi = *it;
+// 		it++;
+// 		if (it != this->_deque.end())
+// 		{
+// 			tmpv.push_back(std::make_pair(tmpi, *it));
+// 		}
+// 		else {
+// 			// tmpv.push_back(std::make_pair(tmpi, -1));
+// 			it--;
+// 		}
+// 	}
+// 	for (std::deque< std::pair<int, int> >::iterator it = tmpv.begin(); it != tmpv.end(); it++)
+// 	{
+// 		std::cout << "The first = " << it->first << " ; The scond : " << it->second << std::endl;
+// 		if (it->first > it->second)
+// 		{
+// 			tmp = it->first;
+// 			it->first = it->second;
+// 			it->second = tmp;
+// 		}
+// 		std::cout << "The first = " << it->first << " ; The scond : " << it->second << std::endl;
+// 	}
+// 	this->_vector.clear();
+// 	std::cout << "tmpi : " << tmpi << std::endl;
+// }
 
 PmergeMe & PmergeMe::operator=(const PmergeMe & p)
 {

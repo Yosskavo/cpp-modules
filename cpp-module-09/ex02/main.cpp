@@ -18,8 +18,8 @@ int main(int ac, const char **av)
 		std::cout << std::endl;
 		std::cout << "using vector's " << std::endl;
 		p.SortVector();
-		std::cout << "using deque's " << std::endl;
-		p.SortDeque();
+		// std::cout << "using deque's " << std::endl;
+		// p.SortDeque();
 	}
 	catch(const std::exception & e)
 	{
