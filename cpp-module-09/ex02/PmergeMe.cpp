@@ -43,6 +43,14 @@ void	PmergeMe::print_it(void)
 	}
 }
 
+std::vector<int>::iterator	PmergeMe::FindPos(int	value)
+{
+	for(std::vector<int>::iterator it = this->_vector.begin(); it != this->_vector.end(); it++)
+	{
+		// TODO: Please finish it man
+	}
+}
+
 void	PmergeMe::SortVector(void)
 {
 	std::vector<std::pair<int, int> >		tmpv;
@@ -76,8 +84,11 @@ void	PmergeMe::SortVector(void)
 	{
 		this->_vector.push_back(it->first);
 	}
-	 
-	tmpv.pop_back();
+	this->_vector.insert(this->_vector.begin(), tmpv[0].second);
+	for (std::vector< std::pair<int, int> >::iterator it = tmpv.begin() + 1 ; it != tmpv.end() ; it++)
+	{
+		this->_vector.insert(FindPos(it->second), it->second);
+	}
 }
 
 

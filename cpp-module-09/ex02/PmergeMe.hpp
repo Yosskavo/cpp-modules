@@ -9,6 +9,7 @@ class PmergeMe
 	private :
 		std::vector<int>	_vector;
 		std::deque<int>		_deque;
+		std::vector<int>::iterator	FindPos(int value);	
 	public  :
 		PmergeMe(void);
 		PmergeMe(const PmergeMe &p);
