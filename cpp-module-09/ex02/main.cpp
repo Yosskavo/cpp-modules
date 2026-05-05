@@ -13,13 +13,17 @@ int main(int ac, const char **av)
 		PmergeMe p;
 
 		p.InsertElements(av + 1);
-		std::cout << "This : ";
-		p.print_it();
+		std::cout << "Before : ";
+		p.print_it("vector");
 		std::cout << std::endl;
-		std::cout << "using vector's " << std::endl;
 		p.SortVector();
-		// std::cout << "using deque's " << std::endl;
-		// p.SortDeque();
+		p.SortDeque();
+		std::cout << "After : ";
+		p.print_it("vector");
+		std::cout << std::endl;
+
+		p.print_time("vector");
+		p.print_time("deque");
 	}
 	catch(const std::exception & e)
 	{
