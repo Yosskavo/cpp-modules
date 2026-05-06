@@ -1,21 +1,34 @@
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
-#include <exception>
+# include <exception>
+# include <vector>
 
 class Span
 {
 	private :
-		int			*_array;
-		unsigned int			_arr_pos;
+		std::vector<int>			_array;
 		unsigned int _size;
 	public :
 		Span(unsigned int N);
 		void addNumber(int n);
 		int	longestSpan(void);
 		int	shortestSpan(void);
-		void RangeOfIterators(int *start, unsigned int size);
 		~Span(void);
+
+		template <typename T>
+			void	RangeOfIterators(typename T::iterator start, typename T::iterator end, unsigned int size)
+			{
+				if (_array.size() == this->_size || _array.size() + size > this->_size)
+				{
+					throw SmallPlace();
+				}
+				for (typename T::iterator it = start; it != end && size; it++)
+				{
+					_array.push_back(*it);
+					size--;
+				}
+			}
 
 		class OutOfLimit : public std::exception
 		{

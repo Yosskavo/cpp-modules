@@ -1,5 +1,6 @@
 #include "Span.hpp"
 #include <iostream>
+#include <stack>
 
 int main()
 {
@@ -12,9 +13,13 @@ int main()
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
 
-	int as[5] = {1,2,3,4,5};
+	std::vector<int> as;
 
-	sp.RangeOfIterators(as, 5);
+	for (int i = 0; i < 5; i++)
+	{
+		as.push_back(i);
+	}
+	sp.RangeOfIterators<std::vector<int> >(as.begin(), as.end(), 5);
 	try
 	{
 		sp.addNumber(12);
@@ -26,7 +31,7 @@ int main()
 
 	try
 	{
-		sp.RangeOfIterators(as, 1231231);
+		sp.RangeOfIterators<std::vector<int> >(as.begin(), as.end(), 123123);
 	}
 	catch(const std::exception & e)
 	{
@@ -43,5 +48,14 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 
+	Span asd(10);
+	std::deque<int> s;
+	for (int i = 0; i < 5; i++)
+	{
+		s.push_back(i);
+	}
+	asd.RangeOfIterators< std::deque<int> >(s.begin(), s.end(), 5);
+	std::cout << asd.shortestSpan() << std::endl;
+	std::cout << asd.longestSpan() << std::endl;
 	return 0;
 }
