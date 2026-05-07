@@ -1,6 +1,7 @@
 #include "RobotomyRequestForm.hpp"
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string & target) : AForm("Robot", false, 72, 45), _target(target)
 {
@@ -31,6 +32,7 @@ void RobotomyRequestForm::execute(const Bureaucrat & b) const
 	if (b.getGrade() > this->getGradeSign())
 		throw AForm::GradeTooLowException();
 
+	std::srand(std::time(NULL));
 	std::cout << "Higher Higher" << std::endl;
 	if (rand() % 2 == 0)
 	{
