@@ -6,6 +6,7 @@
 #include <cstring>
 #include <climits>
 #include <cmath>
+#include <iomanip>
 
 void char_value(char value)
 {
@@ -17,8 +18,8 @@ void char_value(char value)
 		std::cout << "char : " << static_cast<char>(value) << std::endl;
 	}
 	std::cout << "int : " << static_cast<int>(value)   << std::endl;
-	std::cout << "double : " << static_cast<double>(value) << std::endl;
-	std::cout << "float : " << static_cast<float>(value) << "f" << std::endl;
+	std::cout << "double : " << std::fixed << std::setprecision(1) << static_cast<double>(value) << std::endl;
+	std::cout << "float : " << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
 }
 
 void double_value(double value)
@@ -49,9 +50,9 @@ void double_value(double value)
 		std::cout << "float : Impossible" << std::endl;
 	}
 	else {
-		std::cout << "float : " << static_cast<float>(value) << "f" << std::endl;
+		std::cout << "float : " <<  std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
 	}
-	std::cout << "double : " << value << std::endl;
+	std::cout << "double : " << std::fixed << std::setprecision(1) <<value << std::endl;
 }
 
 void float_value(float value)
@@ -77,8 +78,8 @@ void float_value(float value)
 			std::cout << "char : " << static_cast<char>(value) << std::endl;
 		}
 	}
-	std::cout << "float : " << static_cast<float>(value) << "f" << std::endl;
-	std::cout << "double : " << value << std::endl;
+	std::cout << "float : " <<  std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
+	std::cout << "double : " << std::fixed << std::setprecision(1) <<value << std::endl;
 }
 
 void int_value(long value)
@@ -109,9 +110,9 @@ void int_value(long value)
 		std::cout << "float : Impossible" << std::endl;
 	}
 	else {
-		std::cout << "float : " << static_cast<float>(value) << "f" << std::endl;
+		std::cout << "float : " <<  std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
 	}
-	std::cout << "double : " << value << std::endl;
+	std::cout << "double : " << std::fixed << std::setprecision(1) <<value << std::endl;
 }
 
 void float_handle(const char *s)
@@ -189,5 +190,27 @@ void ScalarConverter::Converter(const char * s)
 		}
 		int_handle(s);
 	}
+}
+
+
+ScalarConverter::ScalarConverter(void)
+{
+}
+
+ScalarConverter::~ScalarConverter(void)
+{
+}
+
+
+ScalarConverter::ScalarConverter(const ScalarConverter & s)
+{
+	(void)s;
+}
+
+
+ScalarConverter & ScalarConverter::operator=(const ScalarConverter & s)
+{
+	(void)s;
+	return (*this);
 }
 
