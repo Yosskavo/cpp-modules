@@ -6,7 +6,6 @@
 #include <iostream>
 #include <algorithm>
 #include <sys/time.h>
-#include <iomanip>
 
 PmergeMe::PmergeMe(void)
 {
@@ -67,6 +66,30 @@ template <typename	T>
 		return (jacobsthal);
 	}
 
+template <typename T>
+	void ft_swap(T & contai)
+	{
+		T tmp = contai;
+
+		contai[1] = contai[0];
+		contai[0] = tmp[1];
+	}
+
+// template <typename T >
+// 	void	ft_sort_winers(T & container)
+// 	{
+// 		if (container.size() == 1)
+// 			return ;
+// 		if (container.size() == 2)
+// 		{
+// 			if (container[0] < container[1])
+// 			{
+// 				ft_swap(container);
+// 			}
+// 			return ;
+// 		}	
+// 	}
+
 void	PmergeMe::SortVector(void)
 {
 	std::vector<std::pair<int, int> >		tmpv;
@@ -99,7 +122,7 @@ void	PmergeMe::SortVector(void)
 		}
 	}
 	this->_vector.clear();
-	std::sort(tmpv.begin(), tmpv.end());
+	// std::sort(tmpv.begin(), tmpv.end());
 	for (std::vector< std::pair<int, int> >::iterator it = tmpv.begin(); it != tmpv.end(); it++)
 	{
 		this->_vector.push_back(it->first);

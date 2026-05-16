@@ -1,6 +1,5 @@
 #include "RPN.hpp"
 #include <cctype>
-#include <iostream>
 #include <cstdlib>
 #include <stdexcept>
 
@@ -37,13 +36,8 @@ RPN & RPN::operator=(const RPN& r)
 
 t_tocken	ft_tocken(std::string::const_iterator &it)
 {
-	std::cout << "Tocken -> " << *it << std::endl;
 	if (*it == ' ')
 		return (SPACE);
-	// if (*it == '+')
-	// 	return (ADD);
-	// if (*it == '-')
-	// 	return (SUBS);
 	if (*it == '+' || *it == '-')
 	{
 		it++;
@@ -93,7 +87,6 @@ int	RPN::calculat_RPN(const std::string &s)
 	for (std::string::const_iterator it = s.begin(); it != s.end(); it++)
 	{
 		tocken = ft_tocken(it);
-		std::cout << "this -> " << *it << std::endl;
 		switch (tocken)
 		{
 			case NUMBER :
@@ -101,7 +94,7 @@ int	RPN::calculat_RPN(const std::string &s)
 				break;
 			case ADD :
 				if (this->_stack.size() < 2)
-					throw std::runtime_error("Error");
+					throw std::runtime_error("you need numbers to do this operator");
 				tmp_one = this->_stack.top();
 				this->_stack.pop();
 				tmp_two = this->_stack.top();
@@ -110,7 +103,7 @@ int	RPN::calculat_RPN(const std::string &s)
 				break;
 			case MULTI :
 				if (this->_stack.size() < 2)
-					throw std::runtime_error("Error");
+					throw std::runtime_error("you need numbers to do this operator");
 				tmp_one = this->_stack.top();
 				this->_stack.pop();
 				tmp_two = this->_stack.top();
@@ -119,7 +112,7 @@ int	RPN::calculat_RPN(const std::string &s)
 				break;
 			case SUBS :
 				if (this->_stack.size() < 2)
-					throw std::runtime_error("Error");
+					throw std::runtime_error("you need numbers to do this operator");
 				tmp_one = this->_stack.top();
 				this->_stack.pop();
 				tmp_two = this->_stack.top();
@@ -128,33 +121,34 @@ int	RPN::calculat_RPN(const std::string &s)
 				break ;
 			case DEVI :
 				if (this->_stack.size() < 2)
-					throw std::runtime_error("Error");
+					throw std::runtime_error("you need numbers to do this operator");
 				tmp_one = this->_stack.top();
 				this->_stack.pop();
 				tmp_two = this->_stack.top();
 				this->_stack.pop();
+				if (!tmp_one)
+					throw std::runtime_error("you can't devide this numbers on 0");
 				this->_stack.push(tmp_two / tmp_one);
 				break ;
 			case SPACE :
 				break ;
 			case ERROR :
-				throw std::runtime_error("Error");
+				throw std::runtime_error("Invalide character");
 				break ;
 		}
 		if (tocken != SPACE && (*(++it) != ' ' && *it != '\0') )
 		{
-			throw std::runtime_error("Error");
+			throw std::runtime_error("Invalide character");
 		}
 		if (*it == '\0')
 			it--;
 	}
 	if (this->_stack.size() != 1)
 	{
-		throw std::runtime_error("Error");
+		throw std::runtime_error("less operator's than the numbers afforded");
 	}
 	value = this->_stack.top();
 	this->_stack.pop();
 	return (value);
 }
-
 
