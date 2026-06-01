@@ -75,29 +75,56 @@ template <typename T>
 		contai[0] = tmp[1];
 	}
 
-// template <typename T >
-// 	void	ft_sort_winers(T & container)
-// 	{
-// 		if (container.size() == 1)
-// 			return ;
-// 		if (container.size() == 2)
-// 		{
-// 			if (container[0] < container[1])
-// 			{
-// 				ft_swap(container);
-// 			}
-// 			return ;
-// 		}	
-// 	}
+template <typename T>
+	void	ft_sort_winers(T & tmpt)
+	{
+		size_t		mid;
+		if (tmpt.size() <= 1)
+			return ;
+		mid = tmpt.size() / 2;
+		T l(tmpt.begin() + mid, tmpt.end());
+		T r(tmpt.begin(), tmpt.begin() + mid);
+		ft_sort_winers<T>(r);
+		ft_sort_winers<T>(l);
+
+		size_t i = 0, j = 0, k = 0;
+		while (i < r.size() && j < l.size())
+		{
+			if (r[i].first > l[j].first)
+			{
+				tmpt[k] = l[j];
+				j++;
+			}
+			else{
+				tmpt[k] = r[i];
+				i++;
+			}
+			k++;
+		}
+		while (j < l.size())
+		{
+			tmpt[k] = l[j];
+			j++;
+			k++;
+		}
+		while (i < r.size())
+		{
+			tmpt[k] = r[i];
+			i++;
+			k++;
+		}
+	}
 
 void	PmergeMe::SortVector(void)
 {
 	std::vector<std::pair<int, int> >		tmpv;
 	std::vector<int>						jacobsthal;
-	int										tmpi;
+	int										tmpi = -1;
 	int										tmp;
 	struct timeval							end, start;
 
+	if (this->_vector.size() <= 1)
+		throw std::runtime_error("not enough numbers");
 	gettimeofday(&start, NULL);
 	for (std::vector<int>::iterator it = this->_vector.begin(); it != this->_vector.end(); it++)
 	{
@@ -122,7 +149,7 @@ void	PmergeMe::SortVector(void)
 		}
 	}
 	this->_vector.clear();
-	// std::sort(tmpv.begin(), tmpv.end());
+	ft_sort_winers(tmpv);
 	for (std::vector< std::pair<int, int> >::iterator it = tmpv.begin(); it != tmpv.end(); it++)
 	{
 		this->_vector.push_back(it->first);
@@ -151,12 +178,14 @@ void	PmergeMe::SortVector(void)
 
 void	PmergeMe::SortDeque(void)
 {
-	std::deque<std::pair<int, int> >		tmpv;
+	std::deque<std::pair<int, int> >		tmpd;
 	std::deque<int>						jacobsthal;
 	int										tmpi;
 	int										tmp;
 	struct timeval							end, start;
 
+	if (this->_deque.size() <= 1)
+		throw std::runtime_error("not enough numbers");
 	gettimeofday(&start, NULL);
 	for (std::deque<int>::iterator it = this->_deque.begin(); it != this->_deque.end(); it++)
 	{
@@ -164,14 +193,14 @@ void	PmergeMe::SortDeque(void)
 		it++;
 		if (it != this->_deque.end())
 		{
-			tmpv.push_back(std::make_pair(tmpi, *it));
+			tmpd.push_back(std::make_pair(tmpi, *it));
 			tmpi = -1;
 		}
 		else {
 			it--;
 		}
 	}
-	for (std::deque< std::pair<int, int> >::iterator it = tmpv.begin(); it != tmpv.end(); it++)
+	for (std::deque< std::pair<int, int> >::iterator it = tmpd.begin(); it != tmpd.end(); it++)
 	{
 		if (it->first < it->second)
 		{
@@ -181,13 +210,13 @@ void	PmergeMe::SortDeque(void)
 		}
 	}
 	this->_deque.clear();
-	std::sort(tmpv.begin(), tmpv.end());
-	for (std::deque< std::pair<int, int> >::iterator it = tmpv.begin(); it != tmpv.end(); it++)
+	ft_sort_winers(tmpd);
+	for (std::deque< std::pair<int, int> >::iterator it = tmpd.begin(); it != tmpd.end(); it++)
 	{
 		this->_deque.push_back(it->first);
 	}
-	this->_deque.insert(this->_deque.begin(), tmpv[0].second);
-	jacobsthal = jacobsthal_generator<std::deque<int> >(tmpv.size());
+	this->_deque.insert(this->_deque.begin(), tmpd[0].second);
+	jacobsthal = jacobsthal_generator<std::deque<int> >(tmpd.size());
 	int last_jac = 1;
 	int	current_jac;
 	for (size_t i = 0; i < jacobsthal.size() ; i++)
@@ -195,9 +224,9 @@ void	PmergeMe::SortDeque(void)
 		current_jac = jacobsthal[i];
 		for (int j = current_jac; j > last_jac; j--)
 		{
-			if (static_cast<size_t>(j) > tmpv.size())
+			if (static_cast<size_t>(j) > tmpd.size())
 				continue ;
-			int val = tmpv[j - 1].second;
+			int val = tmpd[j - 1].second;
 			this->_deque.insert(std::lower_bound(this->_deque.begin(), this->_deque.end(), val), val);
 		}
 		last_jac = current_jac;

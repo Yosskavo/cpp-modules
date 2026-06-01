@@ -22,6 +22,10 @@ int main(int ac, const char **av)
 		p.print_it("vector");
 		std::cout << std::endl;
 
+
+		std::cout << "After : ";
+		p.print_it("deque");
+		std::cout << std::endl;
 		p.print_time("vector");
 		p.print_time("deque");
 	}
