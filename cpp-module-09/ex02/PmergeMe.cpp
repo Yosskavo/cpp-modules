@@ -51,69 +51,121 @@ void	PmergeMe::print_it(const std::string	&str)
 		}
 }
 
-template <typename	T>
-	T	jacobsthal_generator(int size)
-	{
-		T	jacobsthal;
-		
-		jacobsthal.push_back(1);
-		jacobsthal.push_back(3);
+std::vector<int>	jacobsthal_generator_vector(int size)
+{
+	std::vector<int>	jacobsthal;
 
-		while (jacobsthal.back() < size)
-		{
-			jacobsthal.push_back(jacobsthal[jacobsthal.size() - 1] + 2 * jacobsthal[jacobsthal.size() - 2]);
-		}
-		return (jacobsthal);
+	jacobsthal.push_back(1);
+	jacobsthal.push_back(3);
+
+	while (jacobsthal.back() < size)
+	{
+		jacobsthal.push_back(jacobsthal[jacobsthal.size() - 1] + 2 * jacobsthal[jacobsthal.size() - 2]);
 	}
+	return (jacobsthal);
+}
 
-template <typename T>
-	void ft_swap(T & contai)
+std::deque<int>	jacobsthal_generator_deque(int size)
+{
+	std::deque<int>	jacobsthal;
+
+	jacobsthal.push_back(1);
+	jacobsthal.push_back(3);
+
+	while (jacobsthal.back() < size)
 	{
-		T tmp = contai;
-
-		contai[1] = contai[0];
-		contai[0] = tmp[1];
+		jacobsthal.push_back(jacobsthal[jacobsthal.size() - 1] + 2 * jacobsthal[jacobsthal.size() - 2]);
 	}
+	return (jacobsthal);
+}
 
-template <typename T>
-	void	ft_sort_winers(T & tmpt)
+
+// template <typename T>
+// 	void ft_swap(T & contai)
+// 	{
+// 		T tmp = contai;
+//
+// 		contai[1] = contai[0];
+// 		contai[0] = tmp[1];
+// 	}
+
+void	ft_sort_winers(std::vector<std::pair<int, int> > & tmpt)
+{
+	size_t		mid;
+	if (tmpt.size() <= 1)
+		return ;
+	mid = tmpt.size() / 2;
+	std::vector<std::pair<int, int> > l(tmpt.begin() + mid, tmpt.end());
+	std::vector<std::pair<int, int> > r(tmpt.begin(), tmpt.begin() + mid);
+	ft_sort_winers(r);
+	ft_sort_winers(l);
+
+	size_t i = 0, j = 0, k = 0;
+	while (i < r.size() && j < l.size())
 	{
-		size_t		mid;
-		if (tmpt.size() <= 1)
-			return ;
-		mid = tmpt.size() / 2;
-		T l(tmpt.begin() + mid, tmpt.end());
-		T r(tmpt.begin(), tmpt.begin() + mid);
-		ft_sort_winers<T>(r);
-		ft_sort_winers<T>(l);
-
-		size_t i = 0, j = 0, k = 0;
-		while (i < r.size() && j < l.size())
-		{
-			if (r[i].first > l[j].first)
-			{
-				tmpt[k] = l[j];
-				j++;
-			}
-			else{
-				tmpt[k] = r[i];
-				i++;
-			}
-			k++;
-		}
-		while (j < l.size())
+		if (r[i].first > l[j].first)
 		{
 			tmpt[k] = l[j];
 			j++;
-			k++;
 		}
-		while (i < r.size())
-		{
+		else{
 			tmpt[k] = r[i];
 			i++;
-			k++;
 		}
+		k++;
 	}
+	while (j < l.size())
+	{
+		tmpt[k] = l[j];
+		j++;
+		k++;
+	}
+	while (i < r.size())
+	{
+		tmpt[k] = r[i];
+		i++;
+		k++;
+	}
+}
+
+void	ft_sort_winers(std::deque<std::pair<int, int> > & tmpt)
+{
+	size_t		mid;
+	if (tmpt.size() <= 1)
+		return ;
+	mid = tmpt.size() / 2;
+	std::deque<std::pair<int, int> > l(tmpt.begin() + mid, tmpt.end());
+	std::deque<std::pair<int, int> > r(tmpt.begin(), tmpt.begin() + mid);
+	ft_sort_winers(r);
+	ft_sort_winers(l);
+
+	size_t i = 0, j = 0, k = 0;
+	while (i < r.size() && j < l.size())
+	{
+		if (r[i].first > l[j].first)
+		{
+			tmpt[k] = l[j];
+			j++;
+		}
+		else{
+			tmpt[k] = r[i];
+			i++;
+		}
+		k++;
+	}
+	while (j < l.size())
+	{
+		tmpt[k] = l[j];
+		j++;
+		k++;
+	}
+	while (i < r.size())
+	{
+		tmpt[k] = r[i];
+		i++;
+		k++;
+	}
+}
 
 void	PmergeMe::SortVector(void)
 {
@@ -155,7 +207,7 @@ void	PmergeMe::SortVector(void)
 		this->_vector.push_back(it->first);
 	}
 	this->_vector.insert(this->_vector.begin(), tmpv[0].second);
-	jacobsthal = jacobsthal_generator<std::vector<int> >(tmpv.size());
+	jacobsthal = jacobsthal_generator_vector(tmpv.size());
 	int last_jac = 1;
 	int	current_jac;
 	for (size_t i = 0; i < jacobsthal.size() ; i++)
@@ -216,7 +268,7 @@ void	PmergeMe::SortDeque(void)
 		this->_deque.push_back(it->first);
 	}
 	this->_deque.insert(this->_deque.begin(), tmpd[0].second);
-	jacobsthal = jacobsthal_generator<std::deque<int> >(tmpd.size());
+	jacobsthal = jacobsthal_generator_deque(tmpd.size());
 	int last_jac = 1;
 	int	current_jac;
 	for (size_t i = 0; i < jacobsthal.size() ; i++)
